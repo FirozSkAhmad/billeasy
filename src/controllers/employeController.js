@@ -11,5 +11,13 @@ async function createEmploye(req, res) {
     res.json({ employee })
 }
 
+async function getData(req, res) {
+    const employee = await Employee.findOne({
+        where: { id: req.params.id },
+        include: [{ model: Department }], //
+    });
+    res.json({ employee })
+}
 
-module.exports = { createEmploye }
+
+module.exports = { createEmploye, getData }
